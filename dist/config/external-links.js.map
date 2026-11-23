@@ -1,0 +1,1 @@
+{"version":3,"file":"external-links.js","sourceRoot":"","sources":["../../src/config/external-links.ts"],"names":[],"mappings":"AAOA,MAAM,CAAC,MAAM,cAAc,GAAG;IAC5B,MAAM,EAAE;QAKN,UAAU,EACR,gEAAgE;KACnE;CACO,CAAC;AAYX,MAAM,CAAC,MAAM,UAAU,GAAG;IAExB,cAAc,EAAE,IAAI;IAGpB,QAAQ,EAAE,IAAI;IAGd,YAAY,EAAE,IAAI;IAMlB,iBAAiB,EAAE,IAAI;IAMvB,oBAAoB,EAAE,IAAI;CAClB,CAAC"}
