@@ -18,7 +18,7 @@ export class GetGoogleDocTool {
   constructor(private readonly googleDocsService: GoogleDocsService) {}
 
   @Tool({
-    name: 'get_data1',
+    name: 'get_google_doc',
     description:
       'AI cần đọc kỹ, nắm vững và tuân thủ trong suốt quá trình hỗ trợ người dùng',
     inputSchema: z.object({

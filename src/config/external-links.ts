@@ -28,10 +28,10 @@ export const EXTERNAL_LINKS = {
  */
 export const TOOL_FLAGS = {
   /** Tool đọc Google Docs / Google Drive file (trả raw text) */
-  GET_GOOGLE_DOC: true,
+  GET_GOOGLE_DOC: false,
 
   /** Tool đọc Google Docs / Google Drive file thứ hai từ link2 trong data.json (trả raw text) */
-  GET_GOOGLE_DOC_2: true,
+  GET_GOOGLE_DOC_2: false,
 
   /** Tool lấy nội dung từ note_link trong data.json (không cần tham số) */
   GET_NOTE: false,
@@ -50,4 +50,16 @@ export const TOOL_FLAGS = {
    * để AI đề xuất search/replace snippet cho file .md trong VSCode.
    */
   READ_DOC_FROM_CONFIG: false,
+
+  /**
+   * Tool đọc file Markdown thứ nhất từ URL trong data.json ("md_link"),
+   * trả toàn bộ nội dung có số dòng để AI đề xuất search/replace snippet.
+   */
+  GET_MD_FILE: true,
+
+  /**
+   * Tool đọc file Markdown thứ hai từ URL trong data.json ("md_link2"),
+   * trả toàn bộ nội dung có số dòng để AI đề xuất search/replace snippet.
+   */
+  GET_MD_FILE_2: true,
 } as const;

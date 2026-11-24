@@ -15,6 +15,10 @@ interface GithubConfig {
   link2?: string;
   /** URL cho tool get_note */
   note_link?: string;
+  /** URL file markdown thứ nhất cho tool get_md_file */
+  md_link?: string;
+  /** URL file markdown thứ hai cho tool get_md_file_2 */
+  md_link2?: string;
   /** Map key → URL cho tool get_resource */
   resources?: Record<string, string>;
 }
@@ -75,6 +79,36 @@ export class GithubConfigService {
       );
     }
     return link2;
+  }
+
+  /**
+   * Lấy URL file markdown thứ nhất từ trường "md_link" trong data.json.
+   */
+  async getMdLink(): Promise<string> {
+    const config = await this.fetchConfig();
+    const mdLink = config.md_link;
+    if (!mdLink || typeof mdLink !== 'string') {
+      throw new InternalServerErrorException(
+        'data.json không có trường "md_link" hợp lệ. ' +
+          'Hãy thêm: { "md_link": "https://..." } vào data.json.',
+      );
+    }
+    return mdLink;
+  }
+
+  /**
+   * Lấy URL file markdown thứ hai từ trường "md_link2" trong data.json.
+   */
+  async getMdLink2(): Promise<string> {
+    const config = await this.fetchConfig();
+    const mdLink2 = config.md_link2;
+    if (!mdLink2 || typeof mdLink2 !== 'string') {
+      throw new InternalServerErrorException(
+        'data.json không có trường "md_link2" hợp lệ. ' +
+          'Hãy thêm: { "md_link2": "https://..." } vào data.json.',
+      );
+    }
+    return mdLink2;
   }
 
   /**

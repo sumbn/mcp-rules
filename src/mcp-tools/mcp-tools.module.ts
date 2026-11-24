@@ -8,6 +8,8 @@ import { GetNoteTool } from './get-note.tool.js';
 import { GetResourceTool } from './get-resource.tool.js';
 import { ReadDocFromUrlTool } from './read-doc-from-url.tool.js';
 import { ReadDocFromConfigTool } from './read-doc-from-config.tool.js';
+import { GetMdFileTool } from './get-md-file.tool.js';
+import { GetMdFile2Tool } from './get-md-file-2.tool.js';
 import { TOOL_FLAGS } from '../config/external-links.js';
 
 /**
@@ -24,6 +26,8 @@ const conditionalProviders: Provider[] = [
   ...(TOOL_FLAGS.GET_RESOURCE ? [GetResourceTool] : []),
   ...(TOOL_FLAGS.READ_DOC_FROM_URL ? [ReadDocFromUrlTool] : []),
   ...(TOOL_FLAGS.READ_DOC_FROM_CONFIG ? [ReadDocFromConfigTool] : []),
+  ...(TOOL_FLAGS.GET_MD_FILE ? [GetMdFileTool] : []),
+  ...(TOOL_FLAGS.GET_MD_FILE_2 ? [GetMdFile2Tool] : []),
 ];
 
 @Module({
