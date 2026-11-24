@@ -34,20 +34,20 @@ export const TOOL_FLAGS = {
   GET_GOOGLE_DOC_2: true,
 
   /** Tool lấy nội dung từ note_link trong data.json (không cần tham số) */
-  GET_NOTE: true,
+  GET_NOTE: false,
 
   /** Tool lấy nội dung theo resource_key từ resources trong data.json */
-  GET_RESOURCE: true,
+  GET_RESOURCE: false,
 
   /**
    * Tool đọc Google Doc từ URL truyền vào, trả nội dung có số dòng
    * để AI đề xuất search/replace snippet cho file .md trong VSCode.
    */
-  READ_DOC_FROM_URL: true,
+  READ_DOC_FROM_URL: false,
 
   /**
    * Tool đọc Google Doc từ URL trong data.json ("link"), trả nội dung có số dòng
    * để AI đề xuất search/replace snippet cho file .md trong VSCode.
    */
-  READ_DOC_FROM_CONFIG: true,
+  READ_DOC_FROM_CONFIG: false,
 } as const;
