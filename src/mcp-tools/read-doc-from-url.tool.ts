@@ -3,7 +3,6 @@ import { Tool } from '@nestjs/mcp';
 import { z } from 'zod';
 import { GoogleDocsService } from '../google-docs/google-docs.service.js';
 import { TOOL_FLAGS } from '../config/external-links.js';
-import { formatWithLineNumbers } from '../common/format-with-line-numbers.util.js';
 
 /**
  * ReadDocFromUrlTool — Đọc Google Doc từ URL truyền vào,
@@ -45,11 +44,6 @@ export class ReadDocFromUrlTool {
       return '[Tool read_doc_from_url đang bị tắt. Liên hệ quản trị viên để bật lại.]';
     }
 
-    const rawContent = await this.googleDocsService.fetchDocument(document_url);
-
-    return formatWithLineNumbers({
-      sourceUrl: document_url,
-      content: rawContent,
-    });
+    return this.googleDocsService.fetchDocument(document_url);
   }
 }

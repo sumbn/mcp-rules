@@ -3,7 +3,6 @@ import { Tool } from '@nestjs/mcp';
 import { GoogleDocsService } from '../google-docs/google-docs.service.js';
 import { GithubConfigService } from '../github-config/github-config.service.js';
 import { TOOL_FLAGS } from '../config/external-links.js';
-import { formatWithLineNumbers } from '../common/format-with-line-numbers.util.js';
 
 /**
  * ReadDocFromConfigTool — Đọc Google Doc từ URL được cấu hình trong data.json ("link"),
@@ -43,11 +42,6 @@ export class ReadDocFromConfigTool {
     const docUrl = await this.githubConfigService.getGoogleDocLink();
 
     // Fetch nội dung tài liệu
-    const rawContent = await this.googleDocsService.fetchDocument(docUrl);
-
-    return formatWithLineNumbers({
-      sourceUrl: docUrl,
-      content: rawContent,
-    });
+    return this.googleDocsService.fetchDocument(docUrl);
   }
 }

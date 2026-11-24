@@ -3,7 +3,6 @@ import { Tool } from '@nestjs/mcp';
 import { z } from 'zod';
 import { GoogleDocsService } from '../google-docs/google-docs.service.js';
 import { TOOL_FLAGS } from '../config/external-links.js';
-import { formatWithLineNumbers } from '../common/format-with-line-numbers.util.js';
 
 /**
  * GetGoogleDocTool — Đọc nội dung Google Docs / Google Drive file công khai.
@@ -48,11 +47,6 @@ export class GetGoogleDocTool {
     const url =
       document_url ?? (await this.googleDocsService.getDefaultUrl());
 
-    const rawContent = await this.googleDocsService.fetchDocument(url);
-
-    return formatWithLineNumbers({
-      sourceUrl: url,
-      content: rawContent,
-    });
+    return this.googleDocsService.fetchDocument(url);
   }
 }
