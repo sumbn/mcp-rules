@@ -26,6 +26,13 @@ export class GoogleDocsService {
   }
 
   /**
+   * Lấy URL Google Docs thứ hai từ GithubConfigService (data.json → "link2").
+   */
+  async getDefaultUrl2(): Promise<string> {
+    return this.githubConfigService.getGoogleDocLink2();
+  }
+
+  /**
    * Fetch nội dung từ Google Docs hoặc Google Drive file.
    *
    * Hỗ trợ các dạng URL:

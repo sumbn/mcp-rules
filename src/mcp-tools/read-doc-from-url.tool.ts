@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Tool } from '@nestjs/mcp';
 import { z } from 'zod';
 import { GoogleDocsService } from '../google-docs/google-docs.service.js';
-import { TOOL_FLAGS } from '../config/external-links.js';
+
 
 /**
  * ReadDocFromUrlTool — Đọc Google Doc từ URL truyền vào,
@@ -13,6 +13,8 @@ import { TOOL_FLAGS } from '../config/external-links.js';
  * và tạo ra snippet search/replace chính xác dùng được ngay trong VSCode.
  *
  * Bật/tắt: TOOL_FLAGS.READ_DOC_FROM_URL trong src/config/external-links.ts
+ * Khi flag = false, tool này sẽ không được đăng ký vào MCP server
+ * (xem mcp-tools.module.ts).
  */
 @Injectable()
 export class ReadDocFromUrlTool {
@@ -40,10 +42,6 @@ export class ReadDocFromUrlTool {
   }: {
     document_url: string;
   }): Promise<string> {
-    if (!TOOL_FLAGS.READ_DOC_FROM_URL) {
-      return '[Tool read_doc_from_url đang bị tắt. Liên hệ quản trị viên để bật lại.]';
-    }
-
     return this.googleDocsService.fetchDocument(document_url);
   }
 }

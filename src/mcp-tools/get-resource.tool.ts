@@ -3,7 +3,7 @@ import { Tool } from '@nestjs/mcp';
 import { z } from 'zod';
 import { GithubConfigService } from '../github-config/github-config.service.js';
 import { GoogleDocsService } from '../google-docs/google-docs.service.js';
-import { TOOL_FLAGS } from '../config/external-links.js';
+
 
 /**
  * GetResourceTool — Lấy nội dung theo resource_key từ data.json → "resources".
@@ -14,6 +14,8 @@ import { TOOL_FLAGS } from '../config/external-links.js';
  * Thêm/sửa/xóa key trong data.json → backend tự nhận mà không cần deploy lại.
  *
  * Bật/tắt: TOOL_FLAGS.GET_RESOURCE trong src/config/external-links.ts
+ * Khi flag = false, tool này sẽ không được đăng ký vào MCP server
+ * (xem mcp-tools.module.ts).
  */
 @Injectable()
 export class GetResourceTool {
@@ -44,10 +46,6 @@ export class GetResourceTool {
   }: {
     resource_key: string;
   }): Promise<string> {
-    if (!TOOL_FLAGS.GET_RESOURCE) {
-      return '[Tool get_resource đang bị tắt. Liên hệ quản trị viên để bật lại.]';
-    }
-
     // Tra cứu URL từ data.json → resources[resource_key]
     const url = await this.githubConfigService.getResourceUrl(resource_key);
 

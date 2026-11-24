@@ -30,6 +30,9 @@ export const TOOL_FLAGS = {
   /** Tool đọc Google Docs / Google Drive file (trả raw text) */
   GET_GOOGLE_DOC: true,
 
+  /** Tool đọc Google Docs / Google Drive file thứ hai từ link2 trong data.json (trả raw text) */
+  GET_GOOGLE_DOC_2: true,
+
   /** Tool lấy nội dung từ note_link trong data.json (không cần tham số) */
   GET_NOTE: true,
 

@@ -11,6 +11,8 @@ import { EXTERNAL_LINKS } from '../config/external-links.js';
 interface GithubConfig {
   /** URL cho tool get_google_doc */
   link?: string;
+  /** URL thứ hai cho tool get_google_doc_2 */
+  link2?: string;
   /** URL cho tool get_note */
   note_link?: string;
   /** Map key → URL cho tool get_resource */
@@ -59,6 +61,20 @@ export class GithubConfigService {
       );
     }
     return link;
+  }
+
+  /**
+   * Lấy URL Google Docs thứ hai từ trường "link2" trong data.json.
+   */
+  async getGoogleDocLink2(): Promise<string> {
+    const config = await this.fetchConfig();
+    const link2 = config.link2;
+    if (!link2 || typeof link2 !== 'string') {
+      throw new InternalServerErrorException(
+        'data.json không có trường "link2" hợp lệ.',
+      );
+    }
+    return link2;
   }
 
   /**

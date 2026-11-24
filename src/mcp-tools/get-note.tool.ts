@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Tool } from '@nestjs/mcp';
 import { GithubConfigService } from '../github-config/github-config.service.js';
 import { GoogleDocsService } from '../google-docs/google-docs.service.js';
-import { TOOL_FLAGS } from '../config/external-links.js';
+
 
 /**
  * GetNoteTool — Lấy nội dung từ URL được cấu hình trong data.json → "note_link".
@@ -11,6 +11,8 @@ import { TOOL_FLAGS } from '../config/external-links.js';
  * Thay đổi "note_link" trong data.json → backend tự nhận ở lần gọi tiếp theo.
  *
  * Bật/tắt: TOOL_FLAGS.GET_NOTE trong src/config/external-links.ts
+ * Khi flag = false, tool này sẽ không được đăng ký vào MCP server
+ * (xem mcp-tools.module.ts).
  */
 @Injectable()
 export class GetNoteTool {
@@ -28,10 +30,6 @@ export class GetNoteTool {
       'có thể thay đổi URL bất kỳ lúc nào mà không cần deploy lại server.',
   })
   async getNote(): Promise<string> {
-    if (!TOOL_FLAGS.GET_NOTE) {
-      return '[Tool get_note đang bị tắt. Liên hệ quản trị viên để bật lại.]';
-    }
-
     // Lấy URL từ data.json → "note_link"
     const url = await this.githubConfigService.getNoteLink();
 

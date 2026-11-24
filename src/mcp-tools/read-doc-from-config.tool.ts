@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Tool } from '@nestjs/mcp';
 import { GoogleDocsService } from '../google-docs/google-docs.service.js';
 import { GithubConfigService } from '../github-config/github-config.service.js';
-import { TOOL_FLAGS } from '../config/external-links.js';
+
 
 /**
  * ReadDocFromConfigTool — Đọc Google Doc từ URL được cấu hình trong data.json ("link"),
@@ -16,6 +16,8 @@ import { TOOL_FLAGS } from '../config/external-links.js';
  * và tạo ra snippet search/replace chính xác dùng được ngay trong VSCode.
  *
  * Bật/tắt: TOOL_FLAGS.READ_DOC_FROM_CONFIG trong src/config/external-links.ts
+ * Khi flag = false, tool này sẽ không được đăng ký vào MCP server
+ * (xem mcp-tools.module.ts).
  */
 @Injectable()
 export class ReadDocFromConfigTool {
@@ -34,10 +36,6 @@ export class ReadDocFromConfigTool {
       'Dùng tool này khi muốn so sánh hoặc đồng bộ nội dung giữa tài liệu mặc định và file .md.',
   })
   async readDocFromConfig(): Promise<string> {
-    if (!TOOL_FLAGS.READ_DOC_FROM_CONFIG) {
-      return '[Tool read_doc_from_config đang bị tắt. Liên hệ quản trị viên để bật lại.]';
-    }
-
     // Lấy URL từ data.json → "link"
     const docUrl = await this.githubConfigService.getGoogleDocLink();
 
